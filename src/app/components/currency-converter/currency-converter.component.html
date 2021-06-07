@@ -1,0 +1,27 @@
+<form (submit)="convert($event)" class="converter">
+  <div class="input">
+    <label>{{ currentBaseCurrency }}</label>
+    <input
+      name="input-currency"
+      [(ngModel)]="conversionInput"
+      class="{{ conversionInput > 0 ? '' : 'error' }}"
+      type="number"
+    />
+    <span class="error-message" *ngIf="!(conversionInput > 0)">{{
+      error
+    }}</span>
+  </div>
+  <div class="output">
+    <label>{{ currentPairCurrency }}</label>
+    <input [value]="conversionResult" type="number" disabled />
+  </div>
+  <div class="currency-rate">
+    <label>Rate</label>
+    <input [value]="exchangeRate" type="number" disabled />
+  </div>
+  <div class="buttons">
+    <button (click)="convert($event)">Calculate</button>
+    <button (click)="reset()">Reset</button>
+    <button (click)="swap()">Swap</button>
+  </div>
+</form>
